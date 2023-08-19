@@ -1,0 +1,57 @@
+import shutil
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+
+# Define the file paths for the images
+image_paths = [
+    'C:/Users/sedat/Downloads/ccl_GTEX/figures/auto/box_plot_ccl1.png',
+    'C:/Users/sedat/Downloads/ccl_GTEX/figures/auto/box_plot_ccl2.png',
+    'C:/Users/sedat/Downloads/ccl_GTEX/figures/auto/box_plot_ccl3.png',
+    'C:/Users/sedat/Downloads/ccl_GTEX/figures/auto/box_plot_ccl4.png',
+    'C:/Users/sedat/Downloads/ccl_GTEX/figures/auto/box_plot_ccl5.png',
+    'C:/Users/sedat/Downloads/ccl_GTEX/figures/auto/box_plot_ccl7.png',
+    'C:/Users/sedat/Downloads/ccl_GTEX/figures/auto/box_plot_ccl8.png',
+    'C:/Users/sedat/Downloads/ccl_GTEX/figures/auto/box_plot_ccl11.png',
+    'C:/Users/sedat/Downloads/ccl_GTEX/figures/auto/box_plot_ccl13.png',
+    'C:/Users/sedat/Downloads/ccl_GTEX/figures/auto/box_plot_ccl14.png',
+    'C:/Users/sedat/Downloads/ccl_GTEX/figures/auto/box_plot_ccl15.png',
+    'C:/Users/sedat/Downloads/ccl_GTEX/figures/auto/box_plot_ccl16.png',
+
+    # Add the paths for the remaining images here
+]
+
+# Set up the figure and axes
+fig, axs = plt.subplots(4, 3, figsize=(12, 16))
+
+# Iterate over the image paths and plot the images
+for i, image_path in enumerate(image_paths):
+    # Load the image
+    img = mpimg.imread(image_path)
+
+    # Determine the subplot indices
+    row = i // 3
+    col = i % 3
+
+    # Plot the image in the corresponding subplot
+    axs[row, col].imshow(img)
+    axs[row, col].axis('off')
+
+    # Add the subfigure label
+    label = chr(ord('A') + i)
+    axs[row, col].text(0.02, 0.98, f"({label})", transform=axs[row, col].transAxes,
+                       fontsize=12, fontweight='bold', va='top', ha='left')
+
+# Adjust the spacing between subplots
+fig.tight_layout(pad=1.0)
+
+# Save the figure with a DPI of 600
+plt.savefig('C:/Users/sedat/Downloads/manu/Figures_15_ccls/new.png', dpi=600)
+
+# Specify the destination folder path
+#destination_folder = 'C:/Users/sedat/Downloads/manu/ccl28'
+
+# Move the individual images to the destination folder
+#for image_path in image_paths:
+#    shutil.move(image_path, destination_folder)
+
+#print('Images moved to the destination folder.')
